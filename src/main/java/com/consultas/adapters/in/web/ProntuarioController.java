@@ -17,19 +17,16 @@ public class ProntuarioController {
 
     @PostMapping
     public ResponseEntity<Prontuario> registrar(@RequestBody ProntuarioRequestDTO dto) {
-        // Converte o DTO (JSON recebido) para o objeto de Domínio
         Prontuario prontuario = new Prontuario(
                 dto.idprontuario(),
                 dto.idconsulta(),
+                dto.idpaciente(),
                 dto.peso(),
                 dto.altura(),
                 dto.descricaoSintomas(),
                 dto.observacaoClinica()
         );
-
-        // O Controller não tem regra de negócio, ele apenas delega para o UseCase
         Prontuario registrado = registrarProntuarioUseCase.registrar(prontuario);
-
         return ResponseEntity.ok(registrado);
     }
 }

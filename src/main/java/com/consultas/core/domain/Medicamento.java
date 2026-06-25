@@ -1,8 +1,20 @@
 package com.consultas.core.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "medicamento")
 public class Medicamento {
-    private final int idmedicamento;
-    private final String nomeMedicamento;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idmedicamento")
+    private int idmedicamento;
+
+    @Column(name = "nome_medicamento", nullable = false, length = 45)
+    private String nomeMedicamento;
+
+    protected Medicamento() {}
 
     public Medicamento(int idmedicamento, String nomeMedicamento) {
         this.idmedicamento = idmedicamento;

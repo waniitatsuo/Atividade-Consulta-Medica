@@ -1,8 +1,20 @@
 package com.consultas.core.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "plano_saude")
 public class PlanoSaude {
-    private final int idplanoSaude;
-    private final String nomePlano;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idplano_saude")
+    private int idplanoSaude;
+
+    @Column(name = "nome_plano", nullable = false, length = 100)
+    private String nomePlano;
+
+    protected PlanoSaude() {}
 
     public PlanoSaude(int idplanoSaude, String nomePlano) {
         this.idplanoSaude = idplanoSaude;

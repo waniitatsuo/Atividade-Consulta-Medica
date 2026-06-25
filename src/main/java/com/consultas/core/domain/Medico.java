@@ -1,9 +1,23 @@
 package com.consultas.core.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "medico")
 public class Medico {
-    private final int idmedico;
-    private final String nomeMedico;
-    private final String crm;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idmedico")
+    private int idmedico;
+
+    @Column(name = "nome_medico", nullable = false, length = 45)
+    private String nomeMedico;
+
+    @Column(name = "crm", nullable = false, unique = true, length = 20)
+    private String crm;
+
+    protected Medico() {}
 
     public Medico(int idmedico, String nomeMedico, String crm) {
         this.idmedico = idmedico;
@@ -11,17 +25,7 @@ public class Medico {
         this.crm = crm;
     }
 
-    // --- GETTERS (Sem nenhum setter, garantindo a imutabilidade) ---
-
-    public int getIdmedico() {
-        return idmedico;
-    }
-
-    public String getNomeMedico() {
-        return nomeMedico;
-    }
-
-    public String getCrm() {
-        return crm;
-    }
+    public int getIdmedico() { return idmedico; }
+    public String getNomeMedico() { return nomeMedico; }
+    public String getCrm() { return crm; }
 }
